@@ -1,0 +1,14 @@
+name: Keep Server Alive
+
+on: 
+  schedule:
+    - cron: "*/10 * * * *" # Runs every 10 minutes
+  workflow_dispatch: # allows manual trigger
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase Server
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" https://ftxzkolsexefileehfct.supabase.co/rest/v1/health
